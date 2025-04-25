@@ -41,3 +41,66 @@
 ```bash
 git clone https://github.com/yourusername/xool.git
 cd xool
+
+2. Create and activate a virtual environment
+bash
+Copy
+Edit
+python -m venv venv
+source venv/bin/activate  # on Windows: venv\Scripts\activate
+3. Install dependencies
+bash
+Copy
+Edit
+pip install -r requirements.txt
+4. Run migrations
+bash
+Copy
+Edit
+python manage.py makemigrations
+python manage.py migrate
+5. Create a superuser
+bash
+Copy
+Edit
+python manage.py createsuperuser
+6. Start the development server
+bash
+Copy
+Edit
+python manage.py runserver
+Then go to: http://127.0.0.1:8000/
+
+📁 Project Structure
+bash
+Copy
+Edit
+xool/
+│
+├── users/                 # Handles custom user model and registration
+├── templates/             # HTML templates (login, register)
+├── static/                # Static files (CSS, JS, images)
+├── db.sqlite3             # Default database
+├── manage.py              # Django command-line utility
+├── README.md              # This file
+✨ Coming Soon
+Teacher registration and dashboard
+
+Class and subject management
+
+Attendance tracking
+
+Report generation
+
+Email notifications
+
+📜 License
+This project is open-source and available under the MIT License.
+
+🤝 Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change or add.
+
+📬 Contact
+Author: Reginald Chikuni
+Email: reginaldchikun2@gmail.com
+GitHub: @RatedRegi
