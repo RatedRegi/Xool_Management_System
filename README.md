@@ -43,28 +43,37 @@ git clone https://github.com/yourusername/xool.git
 cd xool
 
 ### 2. Create and activate a virtual environment
+
 bash
 Copy
 Edit
 python -m venv venv
 source venv/bin/activate  # on Windows: venv\Scripts\activate
+
 ### 3. Install dependencies
+
 bash
 Copy
 Edit
 pip install -r requirements.txt
+
 ### 4. Run migrations
+
 bash
 Copy
 Edit
 python manage.py makemigrations
 python manage.py migrate
+
 ### 5. Create a superuser
+
 bash
 Copy
 Edit
 python manage.py createsuperuser
+
 ### 6. Start the development server
+
 bash
 Copy
 Edit
