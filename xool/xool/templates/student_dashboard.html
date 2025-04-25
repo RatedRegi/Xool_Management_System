@@ -1,0 +1,181 @@
+{% extends 'base.html' %}
+
+{% block title %}Student Dashboard - Xool{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Welcome Section -->
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="card bg-primary text-white">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h2 class="card-title">Welcome, {{ student.user.get_full_name }}!</h2>
+                            <p class="card-text">Track your progress and access your learning materials here.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Stats -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body text-center">
+                    <i class="fas fa-book fa-2x text-primary mb-3"></i>
+                    <h5 class="card-title">Active Courses</h5>
+                    <p class="card-text display-6">4</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body text-center">
+                    <i class="fas fa-tasks fa-2x text-success mb-3"></i>
+                    <h5 class="card-title">Assignments</h5>
+                    <p class="card-text display-6">3</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body text-center">
+                    <i class="fas fa-calendar-check fa-2x text-info mb-3"></i>
+                    <h5 class="card-title">Upcoming Tests</h5>
+                    <p class="card-text display-6">2</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body text-center">
+                    <i class="fas fa-chart-line fa-2x text-warning mb-3"></i>
+                    <h5 class="card-title">Overall Grade</h5>
+                    <p class="card-text display-6">A-</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Courses Section -->
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <h3 class="mb-3">Your Courses</h3>
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Mathematics</h5>
+                            <p class="card-text">Grade 10 - Algebra and Geometry</p>
+                            <div class="progress mb-3">
+                                <div class="progress-bar" role="progressbar" style="width: 75%">75%</div>
+                            </div>
+                            <a href="#" class="btn btn-outline-primary">View Course</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Science</h5>
+                            <p class="card-text">Grade 10 - Physics and Chemistry</p>
+                            <div class="progress mb-3">
+                                <div class="progress-bar" role="progressbar" style="width: 60%">60%</div>
+                            </div>
+                            <a href="#" class="btn btn-outline-primary">View Course</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">English</h5>
+                            <p class="card-text">Grade 10 - Literature and Composition</p>
+                            <div class="progress mb-3">
+                                <div class="progress-bar" role="progressbar" style="width: 85%">85%</div>
+                            </div>
+                            <a href="#" class="btn btn-outline-primary">View Course</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upcoming Assignments -->
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <h3 class="mb-3">Upcoming Assignments</h3>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Assignment</th>
+                            <th>Course</th>
+                            <th>Due Date</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Algebra Quiz</td>
+                            <td>Mathematics</td>
+                            <td>Tomorrow</td>
+                            <td><span class="badge bg-warning">Pending</span></td>
+                            <td><a href="#" class="btn btn-sm btn-primary">Start</a></td>
+                        </tr>
+                        <tr>
+                            <td>Physics Lab Report</td>
+                            <td>Science</td>
+                            <td>In 3 days</td>
+                            <td><span class="badge bg-info">In Progress</span></td>
+                            <td><a href="#" class="btn btn-sm btn-primary">Continue</a></td>
+                        </tr>
+                        <tr>
+                            <td>English Essay</td>
+                            <td>English</td>
+                            <td>Next Week</td>
+                            <td><span class="badge bg-secondary">Not Started</span></td>
+                            <td><a href="#" class="btn btn-sm btn-primary">Start</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Activity -->
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="mb-3">Recent Activity</h3>
+            <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">Completed Mathematics Quiz</h5>
+                        <small>2 hours ago</small>
+                    </div>
+                    <p class="mb-1">Scored 85% on the Algebra quiz</p>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">New Assignment Posted</h5>
+                        <small>5 hours ago</small>
+                    </div>
+                    <p class="mb-1">Physics lab report due in 3 days</p>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">Course Progress Updated</h5>
+                        <small>Yesterday</small>
+                    </div>
+                    <p class="mb-1">English course progress increased to 85%</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

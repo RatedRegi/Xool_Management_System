@@ -1,0 +1,11 @@
+Teacher
+1st & 2nd name: Clive Manhanga
+subject: Maths 
+qualification: Bachelor Degree in Mathematics
+email: clivemanhanga@gmail.com
+username: clivem
+password: clive_2010
+school: Mkoba 4 Primary
+Years of Teaching Experience: 5
+
+Student

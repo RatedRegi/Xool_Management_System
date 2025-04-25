@@ -1,0 +1,108 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static %}
+
+{% block extrastyle %}
+<style>
+    .dashboard {
+        padding: 20px;
+    }
+    .dashboard .module {
+        margin-bottom: 20px;
+        background: #fff;
+        border: 1px solid #e8e8e8;
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .dashboard .module h2 {
+        background: #4CAF50;
+        color: #fff;
+        padding: 10px 15px;
+        margin: 0;
+        border-radius: 4px 4px 0 0;
+    }
+    .dashboard .module table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    .dashboard .module th {
+        background: #f5f5f5;
+        padding: 8px 15px;
+        text-align: left;
+    }
+    .dashboard .module td {
+        padding: 8px 15px;
+        border-top: 1px solid #e8e8e8;
+    }
+    .dashboard .module tr:hover {
+        background: #f9f9f9;
+    }
+    .dashboard .module .addlink {
+        display: block;
+        padding: 10px 15px;
+        background: #f5f5f5;
+        color: #4CAF50;
+        text-decoration: none;
+        border-radius: 0 0 4px 4px;
+    }
+    .dashboard .module .addlink:hover {
+        background: #e8e8e8;
+    }
+    .dashboard .module .changelink {
+        color: #4CAF50;
+        text-decoration: none;
+    }
+    .dashboard .module .changelink:hover {
+        text-decoration: underline;
+    }
+</style>
+{% endblock %}
+
+{% block coltype %}colMS{% endblock %}
+
+{% block bodyclass %}{{ block.super }} dashboard{% endblock %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+    <a href="{% url 'admin:index' %}">{% translate 'Home' %}</a>
+    &rsaquo;
+    {% translate 'Dashboard' %}
+</div>
+{% endblock %}
+
+{% block content %}
+<div id="content-main">
+    {% include "admin/app_list.html" with app_list=app_list show_changelinks=True %}
+</div>
+{% endblock %}
+
+{% block sidebar %}
+<div id="content-related">
+    <div class="module" id="recent-actions-module">
+        <h2>{% translate 'Recent actions' %}</h2>
+        <h3>{% translate 'My actions' %}</h3>
+        {% load log %}
+        {% get_admin_log 10 as admin_log for_user user %}
+        {% if not admin_log %}
+        <p>{% translate 'None available' %}</p>
+        {% else %}
+        <ul class="actionlist">
+        {% for entry in admin_log %}
+        <li class="{% if entry.is_addition %}addlink{% endif %}{% if entry.is_change %}changelink{% endif %}{% if entry.is_deletion %}deletelink{% endif %}">
+            {% if entry.is_deletion or not entry.get_admin_url %}
+                {{ entry.object_repr }}
+            {% else %}
+                <a href="{{ entry.get_admin_url }}">{{ entry.object_repr }}</a>
+            {% endif %}
+            <br>
+            {% if entry.content_type %}
+                <span class="mini quiet">{% filter capfirst %}{{ entry.content_type.name }}{% endfilter %}</span>
+            {% else %}
+                <span class="mini quiet">{% translate 'Unknown content' %}</span>
+            {% endif %}
+        </li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+</div>
+{% endblock %} 

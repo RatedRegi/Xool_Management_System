@@ -1,0 +1,210 @@
+{% extends 'base.html' %}
+
+{% block title %}Xool - Transform Your Educational Experience{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="position-relative overflow-hidden">
+    <div class="bg-primary text-white">
+        <div class="container py-5">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="display-3 fw-bold mb-4">Transform Your Classroom with <span class="text-warning">Xool</span></h1>
+                    <p class="lead mb-4">Empowering educators and students with innovative tools for modern learning. Join thousands of teachers who are revolutionizing education.</p>
+                    <div class="d-flex gap-3">
+                        <a href="{% url 'register_teacher' %}" class="btn btn-light btn-lg">Get Started Free</a>
+                        <a href="{% url 'about' %}" class="btn btn-outline-light btn-lg">Learn More</a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="position-relative">
+                        <img src="https://source.unsplash.com/random/800x600/?education,technology" alt="Modern Classroom" class="img-fluid rounded-4 shadow-lg">
+                        <div class="position-absolute top-0 start-0 translate-middle">
+                            <div class="bg-success text-white rounded-circle p-3 shadow">
+                                <i class="fas fa-chart-line fa-2x"></i>
+                            </div>
+                        </div>
+                        <div class="position-absolute bottom-0 end-0 translate-middle">
+                            <div class="bg-warning text-white rounded-circle p-3 shadow">
+                                <i class="fas fa-users fa-2x"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="position-absolute bottom-0 start-0 w-100 overflow-hidden" style="height: 100px;">
+        <svg class="position-absolute" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 100 100" fill="white">
+            <path d="M0,0 L100,0 L100,100 L0,100 Z" />
+        </svg>
+    </div>
+</div>
+
+<!-- Features Section -->
+<div class="container py-5">
+    <div class="row mb-5">
+        <div class="col-12 text-center">
+            <h2 class="fw-bold">Why Choose Xool?</h2>
+            <p class="lead text-muted">Discover the features that make Xool the perfect choice for modern education</p>
+        </div>
+    </div>
+    
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center p-4">
+                    <div class="bg-primary bg-opacity-10 rounded-circle p-3 d-inline-block mb-3">
+                        <i class="fas fa-chalkboard-teacher fa-2x text-primary"></i>
+                    </div>
+                    <h3 class="h4">Smart Classroom Management</h3>
+                    <p class="card-text">Streamline your classroom with intuitive tools for attendance, assignments, and student progress tracking.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center p-4">
+                    <div class="bg-primary bg-opacity-10 rounded-circle p-3 d-inline-block mb-3">
+                        <i class="fas fa-book-reader fa-2x text-primary"></i>
+                    </div>
+                    <h3 class="h4">Interactive Learning</h3>
+                    <p class="card-text">Engage students with multimedia content, quizzes, and collaborative projects that make learning fun.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center p-4">
+                    <div class="bg-primary bg-opacity-10 rounded-circle p-3 d-inline-block mb-3">
+                        <i class="fas fa-chart-line fa-2x text-primary"></i>
+                    </div>
+                    <h3 class="h4">Performance Analytics</h3>
+                    <p class="card-text">Track student progress and identify areas for improvement with detailed analytics and reports.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Testimonials Section -->
+<div class="bg-light py-5">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-12 text-center">
+                <h2 class="fw-bold">What Our Users Say</h2>
+                <p class="lead text-muted">Hear from educators who are transforming their classrooms with Xool</p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="https://source.unsplash.com/random/100x100/?teacher" alt="Teacher" class="rounded-circle me-3" width="60">
+                            <div>
+                                <h5 class="mb-0">Sarah Johnson</h5>
+                                <p class="text-muted mb-0">Mathematics Teacher</p>
+                            </div>
+                        </div>
+                        <p class="card-text">"Xool has completely transformed how I manage my classroom. The analytics tools help me identify struggling students early and provide targeted support."</p>
+                        <div class="text-warning">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="https://source.unsplash.com/random/100x100/?professor" alt="Teacher" class="rounded-circle me-3" width="60">
+                            <div>
+                                <h5 class="mb-0">Michael Chen</h5>
+                                <p class="text-muted mb-0">Science Teacher</p>
+                            </div>
+                        </div>
+                        <p class="card-text">"The interactive learning features have made my science classes more engaging than ever. Students love the multimedia content and collaborative tools."</p>
+                        <div class="text-warning">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="https://source.unsplash.com/random/100x100/?educator" alt="Teacher" class="rounded-circle me-3" width="60">
+                            <div>
+                                <h5 class="mb-0">Emily Rodriguez</h5>
+                                <p class="text-muted mb-0">English Teacher</p>
+                            </div>
+                        </div>
+                        <p class="card-text">"Xool's parent-teacher communication tools have made it so much easier to keep parents informed and involved in their children's education."</p>
+                        <div class="text-warning">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Call to Action Section -->
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-8 mx-auto text-center">
+            <div class="card bg-primary text-white">
+                <div class="card-body p-5">
+                    <h2 class="fw-bold mb-4">Ready to Transform Your Classroom?</h2>
+                    <p class="lead mb-4">Join thousands of educators who are already using Xool to enhance their teaching experience.</p>
+                    <a href="{% url 'register_teacher' %}" class="btn btn-light btn-lg">Get Started Free</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Stats Section -->
+<div class="bg-light py-5">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-3">
+                <div class="display-4 fw-bold text-primary">10K+</div>
+                <p class="text-muted">Active Teachers</p>
+            </div>
+            <div class="col-md-3">
+                <div class="display-4 fw-bold text-primary">100K+</div>
+                <p class="text-muted">Students</p>
+            </div>
+            <div class="col-md-3">
+                <div class="display-4 fw-bold text-primary">50K+</div>
+                <p class="text-muted">Classes</p>
+            </div>
+            <div class="col-md-3">
+                <div class="display-4 fw-bold text-primary">99%</div>
+                <p class="text-muted">Satisfaction Rate</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
