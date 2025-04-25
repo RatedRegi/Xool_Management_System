@@ -42,7 +42,7 @@
 git clone https://github.com/yourusername/xool.git
 cd xool
 
-### 2. Create and activate a virtual environment
+### 2. Create and activate a virtual environmet
 
 bash
 Copy
