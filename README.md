@@ -66,27 +66,14 @@ python manage.py runserver
 Then go to: http://127.0.0.1:8000/
 
 📁 Project Structure
-bash
-Copy
-Edit
 xool/
 │
-├── users/                 # Handles custom user model and registration
 ├── templates/             # HTML templates (login, register)
 ├── static/                # Static files (CSS, JS, images)
 ├── db.sqlite3             # Default database
 ├── manage.py              # Django command-line utility
 ├── README.md              # This file
-✨ Coming Soon
-Teacher registration and dashboard
 
-Class and subject management
-
-Attendance tracking
-
-Report generation
-
-Email notifications
 
 📜 License
 This project is open-source and available under the MIT License.
