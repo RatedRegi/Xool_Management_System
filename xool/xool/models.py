@@ -89,6 +89,7 @@ class Enrollment(models.Model):
     roll_number = models.IntegerField()
     academic_year = models.CharField(max_length=20)
     remarks = models.TextField(blank=True)
+    progress = models.IntegerField(default=0, help_text="Course completion percentage")
 
     class Meta:
         ordering = ('class_enrolled', 'roll_number')
@@ -98,6 +99,28 @@ class Enrollment(models.Model):
 
     def __str__(self):
         return f"{self.student} enrolled in {self.class_enrolled}"
+
+class CourseMaterial(models.Model):
+    class_enrolled = models.ForeignKey(Class, on_delete=models.CASCADE, related_name='materials')
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+    file = models.FileField(upload_to='course_materials/', blank=True, null=True)
+    date_added = models.DateTimeField(auto_now_add=True)
+    is_visible = models.BooleanField(default=True)
+    material_type = models.CharField(max_length=20, choices=(
+        ('lecture', 'Lecture Notes'),
+        ('assignment', 'Assignment'),
+        ('quiz', 'Quiz'),
+        ('other', 'Other')
+    ))
+
+    class Meta:
+        ordering = ('-date_added',)
+        verbose_name = 'Course Material'
+        verbose_name_plural = 'Course Materials'
+
+    def __str__(self):
+        return f"{self.title} - {self.class_enrolled}"
 
 class Attendance(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name='attendance')
@@ -116,6 +139,30 @@ class Attendance(models.Model):
 
     def __str__(self):
         return f"{self.student} - {self.date} - {'Present' if self.is_present else 'Absent'}"
+
+class Grade(models.Model):
+    student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name='grades')
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name='grades')
+    class_enrolled = models.ForeignKey(Class, on_delete=models.CASCADE, related_name='grades')
+    grade = models.DecimalField(max_digits=5, decimal_places=2)
+    grade_type = models.CharField(max_length=20, choices=(
+        ('assignment', 'Assignment'),
+        ('quiz', 'Quiz'),
+        ('test', 'Test'),
+        ('final', 'Final Exam')
+    ))
+    date = models.DateField()
+    remarks = models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ('-date', 'student__user__first_name')
+        verbose_name = 'Grade'
+        verbose_name_plural = 'Grades'
+
+    def __str__(self):
+        return f"{self.student} - {self.subject} - {self.grade}"
 
 # Signal to create Student/Teacher profile when User is created
 @receiver(post_save, sender=User)

@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ course.name }} - Xool{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row mb-4">
+        <div class="col-12">
+            <a href="{% url 'student_dashboard' %}" class="btn btn-outline-secondary">
+                <i class="fas fa-arrow-left"></i> Back to Dashboard
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <h1 class="mb-4">{{ course.name }}</h1>
+            <p class="lead">{{ course.description|default:"No description available." }}</p>
+            
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">Course Progress</h5>
+                </div>
+                <div class="card-body">
+                    <div class="progress mb-3">
+                        <div class="progress-bar" role="progressbar" style="width: {{ progress }}%">{{ progress }}%</div>
+                    </div>
+                    <p class="text-muted">You have completed {{ progress }}% of the course material.</p>
+                </div>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">Course Materials</h5>
+                </div>
+                <div class="card-body">
+                    <div class="list-group">
+                        {% for material in course.materials.all %}
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">{{ material.title }}</h5>
+                                <small>{{ material.date_added|date:"M d, Y" }}</small>
+                            </div>
+                            <p class="mb-1">{{ material.description }}</p>
+                        </a>
+                        {% empty %}
+                        <p class="text-muted">No course materials available yet.</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Course Information</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><strong>Teacher:</strong> {{ course.teacher.user.get_full_name }}</li>
+                        <li class="mb-2"><strong>Grade Level:</strong> {{ course.grade_level|default:"Not specified" }}</li>
+                        <li class="mb-2"><strong>Start Date:</strong> {{ course.start_date|date:"M d, Y"|default:"Not specified" }}</li>
+                        <li class="mb-2"><strong>End Date:</strong> {{ course.end_date|date:"M d, Y"|default:"Not specified" }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

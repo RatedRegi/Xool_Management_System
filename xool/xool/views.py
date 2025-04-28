@@ -1,9 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import TeacherRegistrationForm, StudentRegistrationForm
-from .models import Teacher, Student, Class, Attendance
+from .models import Teacher, Student, Class, Attendance, Enrollment
 import logging
 
 logger = logging.getLogger(__name__)
@@ -118,4 +118,48 @@ def custom_login_redirect(request):
         return redirect('student_dashboard')
     except Student.DoesNotExist:
         messages.error(request, 'You are not registered as either a student or teacher.')
-        return redirect('home') 
+        return redirect('home')
+
+@login_required
+def view_course(request, course_id):
+    try:
+        # Get the course
+        course = get_object_or_404(Class, id=course_id)
+        logger.info(f"Attempting to view course: {course.name} (ID: {course_id})")
+        
+        # Get the student profile
+        try:
+            student = request.user.student
+            logger.info(f"Student found: {student.user.get_full_name()}")
+        except Student.DoesNotExist:
+            logger.error(f"User {request.user.username} is not registered as a student")
+            messages.error(request, 'You are not registered as a student.')
+            return redirect('home')
+        
+        # Check enrollment
+        try:
+            enrollment = student.enrollments.get(class_enrolled=course, is_active=True)
+            logger.info(f"Enrollment found for student {student.user.get_full_name()} in course {course.name}")
+        except Enrollment.DoesNotExist:
+            logger.error(f"Student {student.user.get_full_name()} is not enrolled in course {course.name}")
+            messages.error(request, 'You are not enrolled in this course.')
+            return redirect('student_dashboard')
+            
+        # Get course materials
+        materials = course.materials.filter(is_visible=True)
+        logger.info(f"Found {materials.count()} materials for course {course.name}")
+        
+        context = {
+            'course': course,
+            'student': student,
+            'progress': enrollment.progress,
+            'materials': materials
+        }
+        return render(request, 'course_detail.html', context)
+        
+    except Exception as e:
+        logger.error(f"Error viewing course: {str(e)}")
+        logger.error(f"User: {request.user.username}")
+        logger.error(f"Course ID: {course_id}")
+        messages.error(request, 'An error occurred while accessing the course. Please try again later.')
+        return redirect('student_dashboard') 

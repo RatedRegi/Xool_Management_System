@@ -42,6 +42,7 @@ class StudentRegistrationForm(UserCreationForm):
     parent_name = forms.CharField(max_length=100, required=True)
     parent_phone = forms.CharField(max_length=15, required=True)
     address = forms.CharField(widget=forms.Textarea, required=True)
+    gender = forms.ChoiceField(choices=(('M', 'Male'), ('F', 'Female'), ('O', 'Other')), required=True)
 
     class Meta:
         model = User
@@ -60,7 +61,8 @@ class StudentRegistrationForm(UserCreationForm):
                 grade_level=self.cleaned_data['grade_level'],
                 parent_name=self.cleaned_data['parent_name'],
                 parent_phone=self.cleaned_data['parent_phone'],
-                address=self.cleaned_data['address']
+                address=self.cleaned_data['address'],
+                gender=self.cleaned_data['gender']
             )
         return user
 

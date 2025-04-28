@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
-from .models import Student, Teacher, Subject, Class, Enrollment, Attendance
+from .models import Student, Teacher, Subject, Class, Enrollment, Attendance, CourseMaterial, Grade
 
 class StudentInline(admin.StackedInline):
     model = Student
@@ -57,4 +57,18 @@ class EnrollmentAdmin(admin.ModelAdmin):
 class AttendanceAdmin(admin.ModelAdmin):
     list_display = ('student', 'class_enrolled', 'date', 'is_present', 'time_in', 'time_out')
     search_fields = ('student__user__first_name', 'student__user__last_name', 'class_enrolled__name')
-    list_filter = ('is_present', 'date', 'class_enrolled') 
+    list_filter = ('is_present', 'date', 'class_enrolled')
+
+@admin.register(CourseMaterial)
+class CourseMaterialAdmin(admin.ModelAdmin):
+    list_display = ('title', 'class_enrolled', 'material_type', 'date_added', 'is_visible')
+    search_fields = ('title', 'class_enrolled__name', 'description')
+    list_filter = ('material_type', 'is_visible', 'date_added')
+    date_hierarchy = 'date_added'
+
+@admin.register(Grade)
+class GradeAdmin(admin.ModelAdmin):
+    list_display = ('student', 'subject', 'class_enrolled', 'grade', 'grade_type', 'date')
+    search_fields = ('student__user__first_name', 'student__user__last_name', 'subject__name', 'class_enrolled__name')
+    list_filter = ('grade_type', 'date', 'class_enrolled__grade_level')
+    date_hierarchy = 'date' 

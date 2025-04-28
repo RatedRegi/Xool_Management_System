@@ -65,42 +65,26 @@
         <div class="col-md-12">
             <h3 class="mb-3">Your Courses</h3>
             <div class="row">
+                {% for enrollment in enrollments %}
                 <div class="col-md-4 mb-3">
                     <div class="card h-100">
                         <div class="card-body">
-                            <h5 class="card-title">Mathematics</h5>
-                            <p class="card-text">Grade 10 - Algebra and Geometry</p>
+                            <h5 class="card-title">{{ enrollment.class_enrolled.name }}</h5>
+                            <p class="card-text">Grade {{ enrollment.class_enrolled.grade_level }} - {{ enrollment.class_enrolled.teacher.subject }}</p>
                             <div class="progress mb-3">
-                                <div class="progress-bar" role="progressbar" style="width: 75%">75%</div>
+                                <div class="progress-bar" role="progressbar" style="width: {{ enrollment.progress }}%">{{ enrollment.progress }}%</div>
                             </div>
-                            <a href="#" class="btn btn-outline-primary">View Course</a>
+                            <a href="{% url 'view_course' course_id=enrollment.class_enrolled.id %}" class="btn btn-outline-primary">View Course</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 mb-3">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">Science</h5>
-                            <p class="card-text">Grade 10 - Physics and Chemistry</p>
-                            <div class="progress mb-3">
-                                <div class="progress-bar" role="progressbar" style="width: 60%">60%</div>
-                            </div>
-                            <a href="#" class="btn btn-outline-primary">View Course</a>
-                        </div>
+                {% empty %}
+                <div class="col-12">
+                    <div class="alert alert-info">
+                        You are not enrolled in any courses yet.
                     </div>
                 </div>
-                <div class="col-md-4 mb-3">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">English</h5>
-                            <p class="card-text">Grade 10 - Literature and Composition</p>
-                            <div class="progress mb-3">
-                                <div class="progress-bar" role="progressbar" style="width: 85%">85%</div>
-                            </div>
-                            <a href="#" class="btn btn-outline-primary">View Course</a>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </div>
